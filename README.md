@@ -1,2 +1,1 @@
-# PHP_OOP_PDO_CRUD
- 
+ CRUD app with OOP PHP and PDO 
