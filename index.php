@@ -1,13 +1,16 @@
 <?php
     include "./include/db.php";
+    class Users{
     $stmt = $db->query("SELECT * FROM users");
-    while($row = $stmt->fetch()){
-        echo $row['firstname'];
+    while($row = $stmt->fetch(PDO::FETCH_OBJ)){
+        echo $row->firstname;
         echo'<br>';
     }
    
+    // define("Numeric","Hellow! I am Numeric array constant");
+    // echo Numeric;
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,4 +20,4 @@
 <body>
     <center><h1>PHP OOP PDO CRUD with Bootstrap</h1></center>
 </body>
-</html>
+</html> -->
