@@ -34,15 +34,16 @@
     }
     $stmt = $db->query("SELECT * FROM users");
     $stmt->setFetchMode(PDO::FETCH_CLASS,"Users");
-    while($row = $stmt->fetch()){
-        print_r($row->toArray());
-        echo $row->fullname;
+    $row = $stmt->fetchAll();
+        // print_r($row->toArray());
+        // echo $row->fullname;
+        print_r($row);
 
         // echo 'Firstname is :'.$row->firstname.' and lastname is: '.$row->lastname;
         echo'<br>';
            
  
-    }
+    
    
     // define("Numeric","Hellow! I am Numeric array constant");
     // echo Numeric;
