@@ -1,6 +1,8 @@
 <?php
     include "./include/db.php";
     class Users{
+
+    }
     $stmt = $db->query("SELECT * FROM users");
     while($row = $stmt->fetch(PDO::FETCH_OBJ)){
         echo $row->firstname;
