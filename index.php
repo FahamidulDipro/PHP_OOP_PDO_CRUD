@@ -25,7 +25,6 @@
         <table class="table table-border table-responsive">
             <tr class="text-center">
             <th>Serial No.</th>
-            <th>Username</th>
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Email ID</th>
@@ -33,7 +32,8 @@
             <th colspan="2">Action</th>
             </tr>
             <?php
-                
+                $query = "SELECT * FROM users";
+                $crud->dataView($query);
             ?>
         </table>
     </div>
