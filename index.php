@@ -18,11 +18,11 @@
     include "./include/db-config.php";
     ?>
     <div class="container">
-        <a href="#" class="btn btn-primary mt-3 text-light"> <i class="fas fa-plus text-light mx-3"></i>Add Record</a>
+        <a href="add_record.php" class="btn btn-primary mt-3 text-light"> <i class="fas fa-plus text-light mx-3"></i>Add Record</a>
     </div>
 
     <div class="container mt-3">
-        <table class="table table-border table-responsive">
+        <table class="table table-bordered table-responsive">
             <tr class="text-center">
             <th>Serial No.</th>
             <th>Firstname</th>
