@@ -1,53 +1,3 @@
-<?php
-// include "./include/db.php";
-// class Users{
-//     public $firstname;
-//     public $lastname;
-//     public $fullname;
-
-//     private $records=array();
-
-//     public function __set($name, $value)
-//     {
-//         $this->records[$name]=$value;
-//     }
-
-//     public function __get($name)
-//     {
-//     if(array_key_exists($name,$this->records)){
-//         return  $this->records[$name];
-//     }
-
-//     }
-//     function toArray(){
-//         return  $this->records;
-//     }
-
-//     function __construct()
-//     {
-//         $this->fullname=$this->firstname.' '.$this->lastname;
-
-//     }
-//     public function xyz(){
-//         echo"Demo xyz";
-//     }
-// }
-// $stmt = $db->query("SELECT * FROM users");
-// $stmt->setFetchMode(PDO::FETCH_CLASS,"Users");
-// $row = $stmt->fetchAll();
-//     // print_r($row->toArray());
-//     // echo $row->fullname;
-//     print_r($row);
-
-//     // echo 'Firstname is :'.$row->firstname.' and lastname is: '.$row->lastname;
-//     echo'<br>';
-
-
-
-
-// // define("Numeric","Hellow! I am Numeric array constant");
-// // echo Numeric;
-?>
 <!doctype html>
 <html lang="en">
 
@@ -65,9 +15,10 @@
 <body>
     <?php
     include "./include/header.php";
+    include "./include/db-config.php";
     ?>
     <div class="container">
-        <a href="#" class="btn btn-info mt-3 text-light"> <i class="fas fa-plus text-light mx-3"></i>Add Record</a>
+        <a href="#" class="btn btn-primary mt-3 text-light"> <i class="fas fa-plus text-light mx-3"></i>Add Record</a>
     </div>
 
     <div class="container mt-3">
@@ -81,6 +32,9 @@
             <th>Contact No.</th>
             <th colspan="2">Action</th>
             </tr>
+            <?php
+                
+            ?>
         </table>
     </div>
 
