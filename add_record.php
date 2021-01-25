@@ -1,5 +1,19 @@
 <?php
 include "./include/header.php";
+include "./include/db-config.php";
+
+if (isset($_POST['submit'])) {
+    $first = $_POST['firstname'];
+    $last = $_POST['lastname'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    if ($crud->create($first, $last, $email, $contact)) {
+
+        header("location:add_record.php?insert");
+    } else {
+        header("location:add_record.php?fail");
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,33 +30,42 @@ include "./include/header.php";
 </head>
 
 <body>
-<div class="clearfix"></div><br>
+    <?php
+    if (isset($_GET['insert'])) {
+        echo '<div class="container mt-3"><div class="alert alert-success"><strong>Your Record has been inserted successfully!</strong></div></div>';
+    }
+    if (isset($_GET['fail'])) {
+        echo '<div class="container mt-3"><div class="alert alert-danger"><strong>Failed to insert</strong></div></div>';
+    }
+    ?>
+    <div class="clearfix"></div><br>
     <div class="container mt-3">
-        <form action="POST">
+        <form method="POST">
             <table class="table table-bordered">
-            <tr>
-                <td>Firstname</td>
-                <td><input type="text" class="form-control" required></td>
-            </tr>
-            <tr>
-                <td>Lastname</td>
-                <td><input type="text" class="form-control required" required></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input type="email" class="form-control required" required></td>
-            </tr>
-            <tr>
-                <td>Contact</td>
-                <td><input type="text" class="form-control required" required></td>
-            </tr>
+                <tr>
+                    <td>Firstname</td>
+                    <td><input type="text" name="firstname" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Lastname</td>
+                    <td><input type="text" name="lastname" class="form-control required" required></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email" class="form-control required" required></td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><input type="text" name="contact" class="form-control required" required></td>
+                </tr>
             </table>
             <tr>
-            <td><button class="btn btn-success text-light"><i class="fas fa-plus text-light mx-3"></i>Insert Record</button></td>
-            <td><a href="index.php" class="btn btn-secondary text-light"><i class="fas fa-backward mx-2"></i>Back</a></td>
+                <td><button class="btn btn-success text-light" name="submit"><i class="fas fa-plus text-light mx-3"></i>Insert Record</button></td>
+                <td><a href="index.php" class="btn btn-secondary text-light"><i class="fas fa-backward mx-2"></i>Back</a></td>
             </tr>
         </form>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 

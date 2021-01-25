@@ -5,6 +5,22 @@
         {
             $this->db = $db_con;
         }
+        public function create($f,$l,$e,$c){
+            try{
+                $stmt = $this->db->prepare("INSERT INTO users (`firstname`,`lastname`,`email`, `contact`) VALUES (:f,:l,:e,:c)");
+                // $stmt->bind_param("sss",$f,$l,$e,$c);
+                $stmt->bindParam(":f",$f);
+                $stmt->bindParam(":l",$l);
+                $stmt->bindParam(":e",$e);
+                $stmt->bindParam(":c",$c);
+                $stmt->execute();
+                return true;
+            }catch(Exception $ex){
+                echo $ex->getMessage();
+                return false;
+            }
+          
+        }
 
         public function dataView($q){
             $stmt = $this->db->prepare($q);
