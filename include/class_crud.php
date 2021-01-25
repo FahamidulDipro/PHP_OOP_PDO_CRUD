@@ -39,12 +39,37 @@
                     <td>'.$row['lastname'].'</td>
                     <td>'.$row['email'].'</td>
                     <td>'.$row['contact'].'</td>
-                    <td><a href="#" class="text-dark"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="edit.php?id='.$row['id'].'" class="text-dark"><i class="fas fa-edit"></i></a></td>
                     <td><a href="delete.php?id='.$row['id'].'" class="text-dark"><i class="fas fa-trash"></i></a></td>
                     </tr>';
                 }
             }
         }
+        public function getId($id){
+           $stmt= $this->db->prepare("SELECT * FROM users WHERE `id`=:id ");
+           $stmt->execute(array(":id"=> $id));
+            $editRow = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $editRow;
+        }
+        public function update($id,$f,$l,$e,$c){
+            try{
+                $stmt = $this->db->prepare("UPDATE `users` SET `firstname`=:f,`lastname`=:l,`email`=:e,`contact`=:c WHERE `id`=:id");
+                // $stmt->bind_param("sss",$f,$l,$e,$c);
+                $stmt->bindParam(":f",$f);
+                $stmt->bindParam(":l",$l);
+                $stmt->bindParam(":e",$e);
+                $stmt->bindParam(":c",$c);
+                $stmt->bindParam(":id",$id);
+                $stmt->execute();
+                return true;
+            }catch(Exception $ex){
+                echo $ex->getMessage();
+                return false;
+            }
+          
+        }
+
+        
     }
   
 ?>
