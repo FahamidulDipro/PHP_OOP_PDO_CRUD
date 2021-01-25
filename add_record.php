@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
     <?php
     if (isset($_GET['insert'])) {
         echo '<div class="container mt-3"><div class="alert alert-success"><strong>Your Record has been inserted successfully!</strong></div></div>';
+        header("location:index.php");
     }
     if (isset($_GET['fail'])) {
         echo '<div class="container mt-3"><div class="alert alert-danger"><strong>Failed to insert</strong></div></div>';

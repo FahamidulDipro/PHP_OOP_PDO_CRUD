@@ -1,9 +1,15 @@
 <?php
     class Crud{
         private $db;
-        public function __construct($db_con)
+        public function __construct(PDO $db_con)
         {
             $this->db = $db_con;
+        }
+        public function delete($id){
+            $stmt= $this->db->prepare("DELETE FROM users WHERE `id`=:id");
+            $stmt->bindParam(":id",$id);
+            $stmt->execute();
+            return true;
         }
         public function create($f,$l,$e,$c){
             try{
@@ -33,6 +39,8 @@
                     <td>'.$row['lastname'].'</td>
                     <td>'.$row['email'].'</td>
                     <td>'.$row['contact'].'</td>
+                    <td><a href="#" class="text-dark"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="delete.php?id='.$row['id'].'" class="text-dark"><i class="fas fa-trash"></i></a></td>
                     </tr>';
                 }
             }
