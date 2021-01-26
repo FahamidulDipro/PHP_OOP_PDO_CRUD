@@ -68,6 +68,16 @@
             }
           
         }
+        // Pagingation
+        public function paging($q,$r){
+            $starting_position = 0;
+            $q2 = $q." LIMIT $starting_position,$r";
+            return $q2;
+        }
+        public function pagelink($q,$r){
+            $self = $_SERVER['PHP_SELF'];
+            echo $self;
+        }
 
         
     }

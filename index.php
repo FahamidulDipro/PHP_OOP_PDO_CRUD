@@ -24,17 +24,29 @@
     <div class="container mt-3">
         <table class="table table-bordered table-responsive">
             <tr class="text-center">
-            <th>Serial No.</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email ID</th>
-            <th>Contact No.</th>
-            <th colspan="2">Action</th>
+                <th>Serial No.</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email ID</th>
+                <th>Contact No.</th>
+                <th colspan="2">Action</th>
             </tr>
             <?php
-                $query = "SELECT * FROM users";
-                $crud->dataView($query);
+            $query = "SELECT * FROM users";
+            $recordPerPage = 3;
+            $query2 = $crud->paging($query, $recordPerPage);
+            $crud->dataView($query2);
             ?>
+            <tr>
+                <td colspan="7" align="center">
+                    <div class="pagination-wrap">
+                    <?php
+                        $crud->pagelink($query,$recordPerPage);
+                    ?>
+
+                    </div>
+                </td>
+            </tr>
         </table>
     </div>
 
