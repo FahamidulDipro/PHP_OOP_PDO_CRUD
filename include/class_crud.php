@@ -71,12 +71,57 @@
         // Pagingation
         public function paging($q,$r){
             $starting_position = 0;
+            if(isset($_GET['page_no'])){
+                $starting_position = ($_GET['page_no']-1)*$r;
+                
+            }
             $q2 = $q." LIMIT $starting_position,$r";
             return $q2;
         }
         public function pagelink($q,$r){
             $self = $_SERVER['PHP_SELF'];
-            echo $self;
+            $stmt=$this->db->prepare($q);
+            $stmt->execute();
+            $totalNumberOfRecords = $stmt->rowCount();
+            if($totalNumberOfRecords>0){
+                echo'
+                <ul class="pagination">';
+                $totalPage = ceil($totalNumberOfRecords/$r);
+                $current_page = 1;
+                if(isset($_GET['page_no'])){
+                    $current_page = $_GET['page_no'];
+                    if($current_page!=1){
+                        $prev = $current_page-1;
+                        echo'<a  class="page-link"  href="'.$self.'?page_no=1" class="text-dark">First</a>';
+                        echo'<a  class="page-link"  href="'.$self.'?page_no='.$prev.'" class="text-dark">Previous</a>';
+                        
+                    }
+                    if($current_page==1){
+                        $next = $current_page+1;
+                      
+                        echo'<a  class="page-link"  href="'.$self.'?page_no='.$next.'" class="text-dark">Next</a>';
+                        echo'<a  class="page-link"  href="'.$self.'?page_no='.$totalPage.'" class="text-dark">Last</a>';
+                        
+                    }
+                    
+                }
+        
+                for($i=1;$i<=$totalPage;$i++){
+                       
+                        if($i==$current_page){
+                        echo'<a  class="page-link"  href="'.$self.'?page_no='.$i.'" style="color:red;">'.$i.'</a>';
+                        }
+                        else{
+                            echo'<a  class="page-link"  href="'.$self.'?page_no='.$i.'" class="text-primary">'.$i.'</a>';
+                        }
+
+                    
+                    }
+                    echo'</ul>
+                    ';
+                
+            }
+       
         }
 
         
